@@ -19,6 +19,12 @@ class ClientController extends Controller
         return $clients;
     }
 
+    public function indexAll()
+    {
+        $clients=Client::with('appointments')->get();
+        return $clients;
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -70,7 +76,9 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        $client = Client::find($client->id);
+
+        return $client;
     }
 
     /**

@@ -10,6 +10,12 @@ class Client extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $appends = ['url'];
+
+    public function getUrlAttribute()
+    {
+        return route('clients.show',['client' => $this]);
+    }
 
     public function appointments()
     {
