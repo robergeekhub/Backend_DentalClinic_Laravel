@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AppointmentController extends Controller
 {
+    public function indexAll()
+    {
+        return Appointment::all();
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($client)
     {
-        //
+        $appointments = DB::table('appointments')
+            ->where('client_id','=',$client)
+            ->get();
+        return $appointments;
     }
 
 

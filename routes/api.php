@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('clients', ClientController::class);
-Route::apiResource('appointments', AppointmentController::class);
+Route::get('appointments',[AppointmentController::class,'indexAll']);
+Route::apiResource('client.appointments', AppointmentController::class);
