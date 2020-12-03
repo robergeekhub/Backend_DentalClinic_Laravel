@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
@@ -13,6 +14,17 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        $clients=Client::all();
+        return $clients;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         //
     }
@@ -25,7 +37,29 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+
+        $rules=[
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required'
+        ];
+
+        $messages=[
+            'name.required'=> 'You have not entered a name',
+            'email.required'=> 'You have not entered the correct email',
+            'password.required'=> 'You have not entered the correct password',
+        ];
+
+        $validator = Validator::make($input,$rules,$messages);
+
+        if ($validator->fails()){
+            return response()->json([$validator->errors()],400);
+        }else{
+            $client=Client::create($input);
+
+            return $client;
+        }
     }
 
     /**
@@ -35,6 +69,17 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Client $client)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Client  $client
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Client $client)
     {
         //
     }
