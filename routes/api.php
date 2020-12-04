@@ -24,10 +24,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register',[UserController::class,'store']);
 Route::post('login',[UserController::class,'login'])->name('login');
-
+Route::get('logout',[UserController::class,'logout'])->name('logout')->middleware('auth:api');
 
 
 Route::get('clientsWithAppointments',[ClientController::class,'indexAll']);
-Route::apiResource('clients', ClientController::class);
+Route::apiResource('clients', ClientController::class)->middleware('auth:api');
 Route::get('appointments',[AppointmentController::class,'indexAll']);
 Route::apiResource('client.appointments', AppointmentController::class);

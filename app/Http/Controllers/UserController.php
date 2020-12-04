@@ -17,9 +17,22 @@ class UserController extends Controller
     }
     public function login(Request $request){
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-            return response()->json('Correct',400);
+            $user = Auth::user();
+            $token = $user->createToken('DentalClinic')->accessToken;
+
+            $respuesta=[];
+            $respuesta['name']=$user->name;
+            $respuesta['token']= 'Bearer '.$token;
+            return response()->json($respuesta,200);
         }else{
-            return response()->json(['error'=>'Not authenticated'],203);
+            return response()->json(['error'=>'Not authenticated'],401);
         }
     }
+    public function logout(Request $request){
+        $token = $request->user()->token();
+        $token ->revoke();
+
+        return response()->json('User perfect log out',200);
+
+}
 }
