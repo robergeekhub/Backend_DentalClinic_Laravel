@@ -3,7 +3,6 @@
 use App\Http\Controllers\AppointmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -22,13 +21,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['cors']], function () {
-Route::post('register',[UserController::class,'store']);
-Route::post('login',[UserController::class,'login'])->name('login');
-Route::get('logout',[UserController::class,'logout'])->name('logout')->middleware('auth:api');
 
+Route::post('register',[UserController::class,'store']); 
+Route::post('login',[UserController::class,'login'])->name('login'); 
+Route::get('logout',[UserController::class,'logout'])->name('logout')->middleware('auth:api'); 
 
-Route::get('clientsWithAppointments',[ClientController::class,'indexAll']);
-Route::apiResource('clients', ClientController::class)->middleware('auth:api');
-Route::get('appointments',[AppointmentController::class,'indexAll']);
-Route::apiResource('client.appointments', AppointmentController::class);
+Route::get('usersWithAppointments',[UserController::class,'indexAll']);
+Route::apiResource('users', UserController::class)->middleware('auth:api');
+
+Route::get('appointments',[AppointmentController::class,'indexAll']); 
+Route::post('appointment/create', [AppointmentController::class,'store'])->name('create')->middleware('auth:api'); 
+Route::delete('appointment/cancel/{id}', [AppointmentController::class,'destroy'])->middleware('auth:api');
+
+Route::apiResource('user.appointments', AppointmentController::class); 
 });

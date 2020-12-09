@@ -12,6 +12,7 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens,HasFactory, Notifiable;
+    protected $guarded=[];
     
     /**
      * The attributes that are mass assignable.
@@ -42,4 +43,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function appointments()
+    {
+        return $this->hasMany('App\Models\Appointment');
+        return $this->belongsToMany('App\Models\User');
+    }
 }

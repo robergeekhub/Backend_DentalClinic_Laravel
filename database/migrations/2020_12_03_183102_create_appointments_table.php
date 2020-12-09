@@ -20,7 +20,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('diagnosis',128);
             $table->decimal('price', 8, 2);
 
-            $table->foreignId('client_id')->constrained('clients');
+            $table->foreignId('user_id')->constrained('users');
         });
     }
 
