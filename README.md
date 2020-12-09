@@ -21,15 +21,15 @@
 <h2>  Users  👥 </h2>
 Allows you to respond to all requests from the Frontend such as registering,logging and logout.
 
-POST -> api/register 
-POST -> api/login
-GET  -> api/logout
+POST -> api/register<br>
+POST -> api/login<br>
+GET  -> api/logout<br>
 
 <h2>Appointments 📥 </h2>
 allows you to create a dentist appointment, delete the appointment or view all pending appointments<br>
 
-GET -> api/usersWithAppointments
-GET -> api/appointments 
-POST -> api/appointment/create   
-DELETE -> api/appointment/cancel/{id}
+GET -> api/usersWithAppointments<br>
+GET -> api/appointments<br>
+POST -> api/appointment/create<br>
+DELETE -> api/appointment/cancel/{id}<br>
 
