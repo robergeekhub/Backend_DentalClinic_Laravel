@@ -26,10 +26,11 @@ POST -> api/login<br><br>
 GET  -> api/logout<br><br>
 
 <h2>Appointments 📥 </h2><br>
-Allows you to create a dentist appointment, delete the appointment or view all pending appointments<br>
+Allows you to create a dentist appointment, delete the appointment or view all pending appointments.<br>
 
 GET -> api/usersWithAppointments<br><br>
 GET -> api/appointments<br><br>
 POST -> api/appointment/create<br><br>
 DELETE -> api/appointment/cancel/{id}<br><br>
 
+Link to Heroku https://clinicadentalback.herokuapp.com/
